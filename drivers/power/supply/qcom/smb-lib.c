@@ -2593,6 +2593,11 @@ static int smblib_therm_charging(struct smb_charger *chg)
 
 	if (chg->system_temp_level >= MAX_TEMP_LEVEL)
 		return 0;
+	
+	if (skip_thermal) {
+		temp_level = chg->system_temp_level;
+		chg->system_temp_level = 0;
+	}
 
 	if (skip_thermal) {
 		temp_level = chg->system_temp_level;
