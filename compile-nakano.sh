@@ -10,7 +10,7 @@ DEFCONFIG=lethal_defconfig
 CLANG="Proton Clang"
 COMPILER=clang
 LINKER=""
-COMPILERDIR="/workspace/Nakano-Kernel-KSU/clang/proton-clang"
+COMPILERDIR="/workspace/Arisuu-Kernel-NO-KSU/proton-clang"
 export KBUILD_BUILD_USER=Rapli
 export KBUILD_BUILD_HOST=PotatoServer
 
