@@ -14,6 +14,19 @@ COMPILERDIR="/workspace/Arisuu-Kernel-NO-KSU/proton-clang"
 export KBUILD_BUILD_USER=Rapli
 export KBUILD_BUILD_HOST=PotatoServer
 
+# AK3_DIR
+ZIPNAME="AL-1S-POCO_F1-NEW-$(date '+%Y%m%d-%H%M').zip"
+ZIPNAME_OLD="AL-1S-POCO_F1-OLD-$(date '+%Y%m%d-%H%M').zip"
+AK3_DIR="/workspace/Arisuu-Kernel-NO-KSU/AnyKernel3"
+
+# NEW DRIVER
+NSE_NEW="out/outputs/${PHONE}/NEW-DRIVER-NSE/Image.gz-dtb"
+SE_NEW="out/outputs/${PHONE}/NEW-DRIVER-SE/Image.gz-dtb"
+
+# OLD DRIVER
+NSE_OLD="out/outputs/${PHONE}/OLD-DRIVER-NSE/Image.gz-dtb"
+SE_OLD="out/outputs/${PHONE}/OLD-DRIVER-SE/Image.gz-dtb"
+
 # Header
 cyan="\033[96m"
 green="\033[92m"
@@ -178,14 +191,58 @@ else
     fi
 fi
 
+# Zipping NEW Driver
+
+if [ -f out/outputs/${PHONE}/NEW-DRIVER-NSE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/NEW-DRIVER-SE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/OLD-DRIVER-NSE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/OLD-DRIVER-SE/Image.gz-dtb ] ; then
+		echo -e "$green=============================================\033[0m"
+		echo -e "$green= [!] Zipping up NEW Driver ...\033[0m"
+		echo -e "$green=============================================\033[0m"
+if [ -d "$AK3_DIR" ]; then
+		cp -r $AK3_DIR AnyKernel3
+	elif ! git clone -q https://github.com/RapliVx/AnyKernel3.git -b beryllium; then
+			echo -e "\nAnyKernel3 repo not found locally and couldn't clone from GitHub! Aborting..."
+	fi
+		cp $NSE_NEW AnyKernel3/kernel/NSE
+        cp $SE_NEW AnyKernel3/kernel/SE
+		cd AnyKernel3
+		git checkout beryllium &> /dev/null
+		zip -r9 "../$ZIPNAME" * -x .git README.md *placeholder
+		cd ..
+		rm -rf AnyKernel3
+fi
+
+# Zipping OLD Driver
+
+if [ -f out/outputs/${PHONE}/NEW-DRIVER-NSE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/NEW-DRIVER-SE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/OLD-DRIVER-NSE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/OLD-DRIVER-SE/Image.gz-dtb ] ; then
+		echo -e "$green=============================================\033[0m"
+		echo -e "$green= [!] Zipping up OLD Driver ...\033[0m"
+		echo -e "$green=============================================\033[0m"
+if [ -d "$AK3_DIR" ]; then
+		cp -r $AK3_DIR AnyKernel3
+	elif ! git clone -q https://github.com/RapliVx/AnyKernel3.git -b beryllium; then
+			echo -e "\nAnyKernel3 repo not found locally and couldn't clone from GitHub! Aborting..."
+	fi
+		cp $NSE_OLD AnyKernel3/kernel/NSE
+        cp $SE_OLD AnyKernel3/kernel/SE
+		cd AnyKernel3
+		git checkout beryllium &> /dev/null
+		zip -r9 "../$ZIPNAME_OLD" * -x .git README.md *placeholder
+		cd ..
+		rm -rf AnyKernel3
+fi
+
+# END
+
 BUILD_END=$(date +"%s")
 DIFF=$(($BUILD_END - $BUILD_START))
-if [ -f out/outputs/${PHONE}/NEW-DRIVER-NSE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/NEW-DRIVER-SE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/OLD-DRIVER-NSE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/OLD-DRIVER-SE/Image.gz-dtb ] ; then
+if [ -f $ZIPNAME ] && [ -f $ZIPNAME_OLD ]; then
     echo -e "$green===========================\033[0m"
     echo -e "$green=  SUCCESS COMPILE KERNEL \033[0m"
-    echo -e "$green=  Device    : $PHONE \033[0m"
-    echo -e "$green=  Defconfig : $DEFCONFIG \033[0m"
-    echo -e "$green=  Toolchain : $CLANG \033[0m"
+    echo -e "$green=  Device     : $PHONE \033[0m"
+    echo -e "$green=  Defconfig  : $DEFCONFIG \033[0m"
+    echo -e "$green=  Toolchain  : $CLANG \033[0m"
+    echo -e "$green=  New Driver : $ZIPNAME \033[0m"
+    echo -e "$green=  Old Driver : $ZIPNAME_OLD \033[0m"
     echo -e "$green=  Completed in $((SECONDS / 60)) minute(s) and $((SECONDS % 60)) second(s) \033[0m "
     echo -e "$green=  Have A Brick Day Nihahahah \033[0m"
     echo -e "$green===========================\033[0m"
