@@ -67,7 +67,7 @@ clean
 # Outputs
 function outputs() {
     echo -e "\n"
-    echo -e "$red [!] MAKE OUT DIR \\033[0m"
+    echo -e "$red [+] MAKE OUT DIR \\033[0m"
     echo -e "\n"
     mkdir out
     mkdir out/outputs
@@ -129,7 +129,7 @@ then
 else
     echo -e "\n"
     echo -e "$green==================================\033[0m"
-    echo -e "$green= [!] START BUILD ${DEFCONFIG}\033[0m"
+    echo -e "$green= [+] START BUILD ${DEFCONFIG}\033[0m"
     echo -e "$green==================================\033[0m"
     echo -e "\n"
 fi
@@ -195,7 +195,7 @@ fi
 
 if [ -f out/outputs/${PHONE}/NEW-DRIVER-NSE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/NEW-DRIVER-SE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/OLD-DRIVER-NSE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/OLD-DRIVER-SE/Image.gz-dtb ] ; then
 		echo -e "$green=============================================\033[0m"
-		echo -e "$green= [!] Zipping up NEW Driver ...\033[0m"
+		echo -e "$green= [+] Zipping up NEW Driver ...\033[0m"
 		echo -e "$green=============================================\033[0m"
 if [ -d "$AK3_DIR" ]; then
 		cp -r $AK3_DIR AnyKernel3
@@ -215,7 +215,7 @@ fi
 
 if [ -f out/outputs/${PHONE}/NEW-DRIVER-NSE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/NEW-DRIVER-SE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/OLD-DRIVER-NSE/Image.gz-dtb ] && [ -f out/outputs/${PHONE}/OLD-DRIVER-SE/Image.gz-dtb ] ; then
 		echo -e "$green=============================================\033[0m"
-		echo -e "$green= [!] Zipping up OLD Driver ...\033[0m"
+		echo -e "$green= [+] Zipping up OLD Driver ...\033[0m"
 		echo -e "$green=============================================\033[0m"
 if [ -d "$AK3_DIR" ]; then
 		cp -r $AK3_DIR AnyKernel3
