@@ -11,12 +11,13 @@ CLANG="Proton Clang"
 COMPILER=clang
 LINKER=""
 COMPILERDIR="/workspace/Arisuu-Kernel-NO-KSU/proton-clang"
+CODENAME="[Fenrys]"
 export KBUILD_BUILD_USER=Rapli
 export KBUILD_BUILD_HOST=PotatoServer
 
 # AK3_DIR
-ZIPNAME="AL-1S-POCO_F1-NEW-$(date '+%Y%m%d-%H%M').zip"
-ZIPNAME_OLD="AL-1S-POCO_F1-OLD-$(date '+%Y%m%d-%H%M').zip"
+ZIPNAME="AL-1S-$CODENAME-F1-NEW-$(date '+%Y%m%d-%H%M').zip"
+ZIPNAME_OLD="AL-1S-$CODENAME-F1-OLD-$(date '+%Y%m%d-%H%M').zip"
 AK3_DIR="/workspace/Arisuu-Kernel-NO-KSU/AnyKernel3"
 
 # NEW DRIVER
@@ -241,6 +242,7 @@ if [ -f $ZIPNAME ] && [ -f $ZIPNAME_OLD ]; then
     echo -e "$green=  Device     : $PHONE \033[0m"
     echo -e "$green=  Defconfig  : $DEFCONFIG \033[0m"
     echo -e "$green=  Toolchain  : $CLANG \033[0m"
+    echo -e "$green=  Codename   : $CODENAME \033[0m"
     echo -e "$green=  New Driver : $ZIPNAME \033[0m"
     echo -e "$green=  Old Driver : $ZIPNAME_OLD \033[0m"
     echo -e "$green=  Completed in $((SECONDS / 60)) minute(s) and $((SECONDS % 60)) second(s) \033[0m "
