@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile script for Nakano kernel
+# Compile script for Arisu kernel
 # Copyright (c) RapliVx Aka Rafi Aditya
 
 # Setup
@@ -204,7 +204,7 @@ if [ -d "$AK3_DIR" ]; then
 			echo -e "\nAnyKernel3 repo not found locally and couldn't clone from GitHub! Aborting..."
 	fi
 		cp $NSE_NEW AnyKernel3/kernel/NSE
-        cp $SE_NEW AnyKernel3/kernel/SE
+                cp $SE_NEW AnyKernel3/kernel/SE
 		cd AnyKernel3
 		git checkout beryllium &> /dev/null
 		zip -r9 "../$ZIPNAME" * -x .git README.md *placeholder
@@ -224,7 +224,7 @@ if [ -d "$AK3_DIR" ]; then
 			echo -e "\nAnyKernel3 repo not found locally and couldn't clone from GitHub! Aborting..."
 	fi
 		cp $NSE_OLD AnyKernel3/kernel/NSE
-        cp $SE_OLD AnyKernel3/kernel/SE
+                cp $SE_OLD AnyKernel3/kernel/SE
 		cd AnyKernel3
 		git checkout beryllium &> /dev/null
 		zip -r9 "../$ZIPNAME_OLD" * -x .git README.md *placeholder
